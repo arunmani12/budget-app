@@ -1,0 +1,109 @@
+.modelContainer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    /* background-color: white; */
+    align-items: center;
+    /* background: blur(-5px); */
+    backdrop-filter: blur(10px);
+    z-index: 10;
+    font-family: var(--font-mono);
+}
+
+.model {
+    width: 700px;
+    /* height: 80vh; */
+    background-color: blanchedalmond;
+    color: #4d54bd;
+    padding: 1rem;
+    position: relative;
+}
+
+.scrollBar{
+    height: 400px;
+    overflow-y: scroll;
+}
+
+
+.container{
+    width: 100%;
+    display: flex;
+}
+
+.trans{
+    margin: 1rem 0;
+    padding: 0.2rem 1rem;
+    border: 1px solid #4d54bd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.trans:hover{
+    opacity: 0.8;
+}
+
+.description{
+  color: #777;
+  margin-top: 0.5rem;
+  font-size: 14px;
+}
+
+.date{
+    margin-top: 0.3rem;
+    font-size: 12px;
+}
+/* border-bottom: 1px solid #4d54bd; */
+
+.category{
+color: #e77bb8;
+}
+
+.trans span{
+    color: red;
+    font-size: 12px;
+}
+
+.prvHolder{
+    margin-left: 1.5rem;
+    line-height: 1.5;
+}
+
+.prvHolder span{
+    color: green;
+}
+
+.participateContainer{
+    margin-left: 10px;
+    height: 100px;
+    overflow-y: scroll;
+    border: 1px solid gray;
+    padding: 0 1rem;
+    width: 50%;
+    border-radius: 4px;
+}
+
+.btnStyleHolder{
+    display: flex;
+    gap: 15px;
+    margin-top: 1.5rem;
+}
+
+.btnStyleHolder button{
+    padding: 0.25rem 1.25rem;
+    background-color: #e77bb8;
+    color: white;
+    border: 1px solid #e77bb8;
+}
+
+.btnStyleHolder button:nth-child(1){
+    padding: 0.25rem 1.25rem;
+    background-color: rgb(78, 209, 148);
+    color: white;
+    border: 1px solid rgb(78, 209, 148);
+}

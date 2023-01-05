@@ -1,0 +1,27 @@
+POST http://localhost:3000/api/register 
+content-type: application/json
+
+{
+   "email":"arunmani9787@gmail.com",
+   "name":"Arun mani",
+   "password":"12345678"
+}
+
+
+
+###Login
+POST http://localhost:3000/api/login 
+content-type: application/json
+
+{
+   "email":"arunmani9787@gmail.com",
+   "password":"12345678"
+}
+
+###search user
+POST http://localhost:3000/api/searchuser 
+content-type: application/json
+
+{
+   "name":"sudhikxsha"
+}

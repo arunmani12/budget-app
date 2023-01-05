@@ -1,0 +1,82 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    align-items: center;
+    justify-content: center;
+    padding: 6rem;
+    min-height: 100vh;
+}
+
+.authCard {
+    font-size: 0.85rem;
+    max-width: var(--max-width);
+    background-color: var(--theme-color-blur);
+    width: 60%;
+    height: 500px;
+    z-index: 2;
+    font-family: var(--font-mono);
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem;
+}
+
+.authCard form {
+    width: 80%;
+}
+
+.InputHolder {
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.InputHolder label,
+.InputHolder input {
+    display: block;
+    width: 100%;
+    background-color: var(--theme-color-blur);
+}
+
+.InputHolder label {
+    font-size: 1.4rem;
+}
+
+.InputHolder input {
+    border: 1px solid var(--theme-color-blur);
+    border-bottom: 1px solid white;
+    outline: none;
+    padding: 0.25rem;
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+}
+
+.authCard button {
+    background-color: #4d54bd;
+    padding: 0.25rem 1.25rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    outline: none;
+    border: 1px solid #4d54bd;
+    margin-top: 2rem;
+}
+
+.authCard button:hover{
+    background-color: #5c63be;
+}
+
+.info{
+    margin-top: 1.5rem;
+    /* color: ; */
+}
+
+.info span{
+    color:  #b81e75;
+    cursor: pointer;
+}
+
+/* .authCard{
+    width: 60%;
+
+} */
