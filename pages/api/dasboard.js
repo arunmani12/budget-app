@@ -16,7 +16,6 @@ export default async function handler(req, res) {
 
         try{
             
-
             const jwt = req.headers.authorization
 
             if (!jwt) {
@@ -59,6 +58,10 @@ export default async function handler(req, res) {
 
             let todayExpense = 0
 
+            let totalExpense = 0
+
+            let expenseByMonth = [0,0,0,0,0,0,0,0,0,0,0,0]
+
             for(let transactions of currentUser.transactions){
                 Categories[transactions.Category] = Categories[transactions.Category] + (transactions.Expense / transactions.Participants.length)
 
@@ -73,9 +76,11 @@ export default async function handler(req, res) {
                     todayExpense = transactions.Expense / transactions.Participants.length + todayExpense
                 }  
 
-            }
+                totalExpense = transactions.Expense / transactions.Participants.length + totalExpense
 
-            console.log(todayExpense)
+                expenseByMonth[transactionDate.getMonth()] = expenseByMonth[transactionDate.getMonth()] + transactions.Expense / transactions.Participants.length + todayExpense
+
+            }
 
             for(let frnds of currentUser.Friends){
 
@@ -85,12 +90,12 @@ export default async function handler(req, res) {
 
             }  
 
-            return res.status(200).json({ user:currentUser ,credit,debit,Categories,todayExpense:todayExpense});
+            return res.status(200).json({ user:currentUser ,credit,debit,Categories,todayExpense,expenseByMonth:expenseByMonth,totalExpense});
 
         
         }catch(e){
 
-            console.log(e)
+
             return res.status(403).json({ message:'something went to wrong' });
         }
 

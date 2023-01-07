@@ -15,7 +15,8 @@
 .expenseHolder{
     margin-top: 2rem;
     padding: 1rem ;
-    width: var(--max-width);
+    max-width: var(--max-width);
+    width: 100%;
     font-size: 0.85rem;
     font-family: var(--font-mono);
     background-color: var(--theme-color-blur);
@@ -42,4 +43,11 @@
     flex-direction: column;
     align-items: flex-start;
     margin-bottom: 2rem;
+}
+
+@media only screen and (max-width: 600px) {
+    .barContainer{
+        transform: rotate(90deg);
+        padding: 3rem 3rem 3rem 0rem;
+    }
 }

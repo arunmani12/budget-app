@@ -148,7 +148,7 @@ const BudgetForm = ({ friends, user, setOpenBudget}: { friends: any, user: any ,
 
         if (!isPaidByIncluded) {
             setLoading(false)
-            return toast.error('Please include paid by user')
+            return toast.error('Please include paid by user(Friends)')
             
         }
 
@@ -197,9 +197,6 @@ const BudgetForm = ({ friends, user, setOpenBudget}: { friends: any, user: any ,
 
     }
 
-
-    console.log(data)
-
     return (
         <form>
            {loading && <div className={styles.loader}>
@@ -208,9 +205,9 @@ const BudgetForm = ({ friends, user, setOpenBudget}: { friends: any, user: any ,
             <div className={styles.formHelpher}>
                 <div className={styles.helpherLeft}>
                     <div className={styles.budgetLableHolder}>
-                        <label htmlFor="pet-select">Category:</label>
+                        <label htmlFor="category">Category:</label>
 
-                        <select id="pet-select" value={data.Category} name='Category' onChange={(e) => {
+                        <select id="category" value={data.Category} name='Category' onChange={(e) => {
                             setData(prv => (
                                 { ...prv, Category: e.target.value }
                             ))
@@ -226,15 +223,15 @@ const BudgetForm = ({ friends, user, setOpenBudget}: { friends: any, user: any ,
                     </div>
 
                     <div className={styles.budgetLableHolder}>
-                        <label>Expense(&#8377;)</label>
-                        <input type='number' value={expense} onChange={(e) => onExpenseChangeHandler(e)} />
+                        <label htmlFor='expense'>Expense(&#8377;)</label>
+                        <input type='number' id='expense' value={expense} onChange={(e) => onExpenseChangeHandler(e)} />
                     </div>
 
 
                     <div className={styles.budgetLableHolder}>
-                        <label htmlFor="pet-select">Paid By:</label>
+                        <label htmlFor="paid-by">Paid By:</label>
 
-                        <select id="pet-select" value={data.PaidBy} onChange={(e) => {
+                        <select id="paid-by" value={data.PaidBy} onChange={(e) => {
                             setData(prv => (
                                 { ...prv, PaidBy: e.target.value }
                             ))
@@ -247,8 +244,8 @@ const BudgetForm = ({ friends, user, setOpenBudget}: { friends: any, user: any ,
                     </div>
 
                     <div className={styles.budgetLableHolder}>
-                        <label>description</label>
-                        <textarea value={data.Description} onChange={(e) => {
+                        <label htmlFor='description'>description</label>
+                        <textarea id='description' value={data.Description} onChange={(e) => {
                             setData(prv => (
                                 { ...prv, Description: e.target.value }
                             ))
@@ -261,7 +258,7 @@ const BudgetForm = ({ friends, user, setOpenBudget}: { friends: any, user: any ,
                 <div className={styles.helpherRight}>
 
                     <div className={styles.budgetLableHolder}>
-                        <label>Partcitipations</label>
+                        <label>Friends</label>
                         <div className={styles.membersHolder}>
                             {
                                 showList.map((d: any, i: any) => (

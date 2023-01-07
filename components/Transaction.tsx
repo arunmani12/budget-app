@@ -2,67 +2,38 @@ import React, { Dispatch, SetStateAction } from 'react'
 import { MdCancel } from 'react-icons/md'
 import transtyles from '../styles/Transactions.module.css'
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
+import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
 
 
 const TransActionModel = ({ setOpenTransaction ,transactions}: { setOpenTransaction: Dispatch<SetStateAction<boolean>>,transactions:any }) => {
 
-    // const [currentStep, setCurrentStep] = React.useState<number>(1)
+  
+    const router = useRouter()
 
-    console.log(transactions)
+    const deleteTransActionDeleteHanlder = async(id:string) =>{
+        const res = await fetch(`/api/delete`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              id
+            }),
+          });
+          let response = await res.json();
 
-    // const transaction = [
-    //     {
-    //         category: 'Food',
-    //         desc: 'lore adef xvlas  sdvds v dsv dv s df vfvdfv fddf vf v dfvwsf zxvds wrkswe asf eaxcmd erasfkfd efsfx',
-    //         part: ['Arunmani', 'ManiKandan', 'Kamalesh', 'Vijayaragav', 'Yukesh', 'Anbu', 'Kamalesh', 'Kamalesh'],
-    //         amount: 32422,
-    //         data: new Date(),
-    //         paidBy: 'Arunmani'
-    //     },
-    //     {
-    //         category: 'Food',
-    //         desc: 'lore adef xvlas wsf zxvds wrkswe asf eaxcmd erasfkfd efsfx',
-    //         part: ['Arunmani', 'ManiKandan', 'Kamalesh', 'Vijayaragav', 'Yukesh', 'Anbu', 'Kamalesh', 'Kamalesh'],
-    //         amount: 32422,
-    //         data: new Date(),
-    //         paidBy: 'Arunmani'
-    //     },
-    //     {
-    //         category: 'food',
-    //         desc: 'lore adef xvlas wsf zxvds wrkswe asf eaxcmd erasfkfd efsfx',
-    //         part: ['Arunmani', 'ManiKandan', 'Kamalesh', 'Vijayaragav', 'Yukesh', 'Anbu', 'Kamalesh', 'Kamalesh'],
-    //         amount: 32422,
-    //         data: new Date(),
-    //         paidBy: 'Arunmani'
-    //     },
-    //     {
-    //         category: 'food',
-    //         desc: 'lore adef xvlas wsf zxvds wrkswe asf eaxcmd erasfkfd efsfx',
-    //         part: ['Arunmani', 'ManiKandan', 'Kamalesh', 'Vijayaragav', 'Yukesh', 'Anbu', 'Kamalesh', 'Kamalesh'],
-    //         amount: 32422,
-    //         data: new Date(),
-    //         paidBy: 'Arunmani'
-    //     },
-    //     {
-    //         category: 'food',
-    //         desc: 'lore adef xvlas wsf zxvds wrkswe asf eaxcmd erasfkfd efsfx',
-    //         part: ['Arunmani', 'ManiKandan', 'Kamalesh', 'Vijayaragav', 'Yukesh', 'Anbu', 'Kamalesh', 'Kamalesh'],
-    //         amount: 32422,
-    //         data: new Date(),
-    //         paidBy: 'Arunmani'
-    //     },
-    //     {
-    //         category: 'food',
-    //         desc: 'lore adef xvlas wsf zxvds wrkswe asf eaxcmd erasfkfd efsfx',
-    //         part: ['Arunmani', 'ManiKandan', 'Kamalesh', 'Vijayaragav', 'Yukesh', 'Anbu', 'Kamalesh', 'Kamalesh'],
-    //         amount: 32422,
-    //         data: new Date(),
-    //         paidBy: 'Arunmani'
-    //     }
-    // ]
+        if(response.message === 'ok')  {
+            setOpenTransaction(false)
+            router.replace(router.asPath);
+        }
+        else{
+            toast.error('something went wrong')
+        }
+    }
 
 
-    const [prvOpen, setPrvOpen] = React.useState(false)
+    const [prvOpen, setPrvOpen] = React.useState(true)
 
     const [currentPrv, setCurrentPrv] = React.useState(0)
 
@@ -75,6 +46,17 @@ const TransActionModel = ({ setOpenTransaction ,transactions}: { setOpenTransact
         setPrvOpen(prv=>!prv)
     }
 
+    
+
+    const calc = (date:string) =>{
+
+        let readableDate = new Date(date)
+
+        let fullDate = readableDate.getDate() + '-' + readableDate.getMonth()+1 + '-' + readableDate.getFullYear()
+
+        return (fullDate)
+
+    }
 
 
     return (
@@ -100,8 +82,7 @@ const TransActionModel = ({ setOpenTransaction ,transactions}: { setOpenTransact
                                     <h3 className={transtyles.category}>{d.category}</h3>
                                     <p className={transtyles.Description}> {d.Description}</p>
                                     <span> -&#8377;{d.Expense}</span>
-                                    {/* <p className={transtyles.date}>{d.entryBy.getDate()}/{d.entryBy.getMonth()}/{d.entryBy.getFullYear()}</p> */}
-                                    <p className={transtyles.date}>hi</p>
+                                    <p className={transtyles.date}>{calc(d.createdAt)}</p>
                                 </div>
                                 <div>
                                     <FaArrowRight/>
@@ -118,28 +99,22 @@ const TransActionModel = ({ setOpenTransaction ,transactions}: { setOpenTransact
                         <p><span>Category</span>:{transactions[currentPrv].Category}</p>
                         <p><span>Total Price:</span>&#8377;{transactions[currentPrv].Expense}</p>
                         <p><span>Description</span>: {transactions[currentPrv].Description}</p>
-                        <p><span>Paid By</span> : {transactions[currentPrv].PaidBy}</p>
+                        <p><span>Paid By</span> : {transactions[currentPrv].PaidBy.name}</p>
                         <p><span>Participaters</span></p>
                         <div className={transtyles.participateContainer}>
                             {
-                                transactions[currentPrv].Participants.map((d:any, i:any) => <p key={i}>{d.id}</p>)
+                                transactions[currentPrv].Participants.map((d:any, i:any) => <p key={i}>{d.name}</p>)
                             }
                         </div>
                         <p><span>Total Split</span>: {transactions[currentPrv].Participants.length}</p>
-                        <p><span>Amount/Person</span>: {transactions[currentPrv].Expense/transactions[currentPrv].Participants.length}</p>
+                        <p><span>Amount/Person</span>: &#x20b9;{transactions[currentPrv].Expense/transactions[currentPrv].Participants.length}</p>
                         <div className={transtyles.btnStyleHolder}>
-                            <button>Edit</button>
-                            <button>Delete</button>
+                            <button onClick={()=>deleteTransActionDeleteHanlder(transactions[currentPrv]._id)}>Delete</button>
                         </div>
                     </div>
 
 
                 </div>}
-
-
-                <div className={transtyles.container}>
-
-                </div>
 
             </div>
         </div>

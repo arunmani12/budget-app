@@ -7,66 +7,75 @@ interface datewiseSpending {
     spend: number
 }
 
-const dateWiseSpending: datewiseSpending[] = [
-    {
-        month: 'jan',
-        spend: 23
-    },
-    {
-        month: 'feb',
-        spend: 29
-    },
-    {
-        month: 'mar',
-        spend: 24
-    },
-    {
-        month: 'apr',
-        spend: 27
-    },
-    {
-        month: 'may',
-        spend: 23
-    },
-    {
-        month: 'jun',
-        spend: 29
-    },
-    {
-        month: 'july',
-        spend: 19
-    },
-    {
-        month: 'aug',
-        spend: 33
-    },
-    {
-        month: 'sep',
-        spend: 39
-    },
-    {
-        month: 'oct',
-        spend: 32
-    },
-    {
-        month: 'nov',
-        spend: 43
-    },
-    {
-        month: 'dec',
-        spend: 19
-    }
-]
 
 
-const Bar = () => {
+
+const Bar = ({expenseByMonth,totalExpense}:{expenseByMonth:number[],totalExpense:number}) => {
+
+
+    const dateWiseSpending: datewiseSpending[] = [
+        {
+            month: 'jan',
+            spend: expenseByMonth[0]
+        },
+        {
+            month: 'feb',
+            spend: expenseByMonth[1]
+        },
+        {
+            month: 'mar',
+            spend: expenseByMonth[2]
+        },
+        {
+            month: 'apr',
+            spend: expenseByMonth[3]
+        },
+        {
+            month: 'may',
+            spend: expenseByMonth[4]
+        },
+        {
+            month: 'jun',
+            spend:  expenseByMonth[5]
+        },
+        {
+            month: 'july',
+            spend:  expenseByMonth[6]
+        },
+        {
+            month: 'aug',
+            spend:  expenseByMonth[7]
+        },
+        {
+            month: 'sep',
+            spend:  expenseByMonth[8]
+        },
+        {
+            month: 'oct',
+            spend:  expenseByMonth[9]
+        },
+        {
+            month: 'nov',
+            spend:  expenseByMonth[10]
+        },
+        {
+            month: 'dec',
+            spend:  expenseByMonth[11]
+        }
+    ]
+
+
+    var limit = Math.max(...expenseByMonth) * 1.5
+
+
+
     return (
         <div className={styles.expenseHolder}>
 
             <div className={styles.expense}>
 
                 <FaRupeeSign size={43} color='#b81e75' />
-                <p>- 24,000</p>
+                <p>- {totalExpense}</p>
                 <p style={{color:'#54bf54'}}>Total Expense</p>
             </div>
 
@@ -74,10 +83,10 @@ const Bar = () => {
 
             <div className={styles.barContainer}>
                 {
-                    dateWiseSpending.map((d, i) => (
+                    dateWiseSpending.map((d) => (
                         <div key={d.month} className={styles.month}>
                             <div className={styles.bar}>
-                                <div style={{ height: d.spend + 'px', width: '100%', background: 'red' }} />
+                                <div style={{ height: (100 * d.spend/limit)+'%', width: '100%', background: 'rgb(255, 132, 132)' }} />
                             </div>
                             <p>{d.month}</p>
                         </div>

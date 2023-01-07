@@ -37,7 +37,8 @@
 .trans{
     margin: 1rem 0;
     padding: 0.2rem 1rem;
-    border: 1px solid #4d54bd;
+    border: 1px solid grey;
+    border-radius: 5px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -57,6 +58,7 @@
 .date{
     margin-top: 0.3rem;
     font-size: 12px;
+    color: rgb(88, 170, 132);;
 }
 /* border-bottom: 1px solid #4d54bd; */
 
@@ -99,11 +101,4 @@ color: #e77bb8;
     background-color: #e77bb8;
     color: white;
     border: 1px solid #e77bb8;
-}
-
-.btnStyleHolder button:nth-child(1){
-    padding: 0.25rem 1.25rem;
-    background-color: rgb(78, 209, 148);
-    color: white;
-    border: 1px solid rgb(78, 209, 148);
 }

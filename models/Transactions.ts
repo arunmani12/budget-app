@@ -5,10 +5,14 @@ const Schema = mongoose.Schema;
 const Transactions = new Schema({
     Category:{ type: String, required: true },
     Expense:{ type: Number, required: true },
-    PaidBy:{ type: String, required: true },
+    PaidBy:{
+         id :{ type: String, required: true },
+         name:{ type: String, required: true }
+        },
     Description : {type: String},
     Participants:[{
-        id:{type:String,required:true}
+        id:{type:String,required:true},
+        name:{ type: String, required: true }
     }],
     entryBy:{ type: String, required: true } ,
 },

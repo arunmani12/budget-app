@@ -26,26 +26,46 @@ export default async function handler(req, res) {
 
         const currentUser = await User.findOne({ email: dataFromToken.email });
 
+
         let { Category,
             Expense,
             PaidBy,
             Description,
             Participants,
             } = req.body
+        
+        const paidByUser = await User.findById(PaidBy);  
+        
+        var partipateData = []
+
+
+        var partipatesId = []
+
+        for (let id of Participants){
+            partipatesId.push(id.id)
+        }
+        
+        const partipates = await User.find().where('_id').in(partipatesId).exec();
+
+        for(let par of partipates){
+
+            partipateData.push({id:par._id,name:par.username})
+        }
 
 
         const transaction = await new Transactions({
             Category,
             Expense,
-            PaidBy,
+            PaidBy:{
+                id:paidByUser._id,
+                name:paidByUser.username
+            },
             Description,
-            Participants,
-            entryBy:currentUser._id.toString()
+            Participants:partipateData,
+            entryBy:currentUser.username
         });
 
         await transaction.save()
-
-        const paidByUser = await User.findById(PaidBy);
 
         for(let f of Participants){
             await User.update(
@@ -97,8 +117,6 @@ export default async function handler(req, res) {
 
         return res.status(200).json({ message: "ok!" });
     }catch(e){
-
-        console.log(e)
         return res.status(401).json({ message: "no user" });
     }
     }

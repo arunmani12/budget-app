@@ -76,7 +76,6 @@ const Friends = ({ friends }: { friends: any }) => {
 
     } else {
       setLoading(false)
-      //   setLoading(false)
       setResult(undefined)
 
     }

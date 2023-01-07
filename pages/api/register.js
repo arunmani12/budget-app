@@ -18,8 +18,10 @@ export default async function handler(req, res) {
 
       const userIsThere = await User.find({ email });
 
-      if (userIsThere.length) {
-        return res.status(403).json({ message: "email is already there" });
+      const userByEmail = await User.find({ username:name });
+
+      if (userIsThere.length || userByEmail.length) {
+        return res.status(403).json({ message: "user is there" });
       }
 
       if (!email || !name.length>4 || !password.length>4) {
@@ -55,8 +57,9 @@ export default async function handler(req, res) {
 
       res.status(200).json({ message: "Success!" })
     } catch (e) {
-      console.log(e)
+
       res.status(401).json({ message: "something went to wrong" });
+      
     }
   }
 }

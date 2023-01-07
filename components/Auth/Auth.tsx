@@ -6,13 +6,17 @@ import Register from './Register'
 const Auth = () => {
 
     const [showModel,setModel] = React.useState('login')
+    const [loading,setLoading] = React.useState(false)
 
 
     return (
         <div className={styles.main}>
-            {showModel === 'login' ? <Login setModel ={setModel}/>
+            {loading && <div className={styles.loader}>
+                <div style={{ marginTop: '10px' }} className="lds-hourglass"></div>
+            </div>}
+            {showModel === 'login' ? <Login setLoading={setLoading} setModel ={setModel}/>
             :
-            <Register setModel ={setModel}/>
+            <Register setLoading={setLoading} setModel ={setModel}/>
             }
         </div>
     )

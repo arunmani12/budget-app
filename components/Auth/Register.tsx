@@ -2,8 +2,13 @@ import React, { useState } from 'react'
 import styles from '../../styles/Auth.module.css'
 import { useRouter } from 'next/router';
 import { validateEmail } from '../../common';
+import { toast } from 'react-toastify';
 
-const Register = ({ setModel }: { setModel: React.Dispatch<React.SetStateAction<string>> }) => {
+
+const Register = ({ setModel,setLoading }: { 
+    setModel: React.Dispatch<React.SetStateAction<string>>,
+    setLoading:React.Dispatch<React.SetStateAction<boolean>> 
+}) => {
 
 
 
@@ -15,17 +20,17 @@ const Register = ({ setModel }: { setModel: React.Dispatch<React.SetStateAction<
 
 
     const registerHandler = async () => {
-        if (!(email.length > 0) || !(password.length > 4) || !(username.length>4)) {
-            if (!validateEmail(email)) {
-                // toast("Please enter vaild email");  
-                alert('Please enter vaild email')
+        setLoading(true)
+        if (!(email.length > 5) || !(password.length > 5) || !(username.length>4)) {
+            if (!validateEmail(email)) {  
+                toast.error('Please enter vaild email')
+                setLoading(false)
                 return;
             }
-            console.log(email,password,username)
-            alert("length is not enough");
+            setLoading(false)
+            toast.error("character length is not enough");
             return
         }
-        // setLoading(true)
         const res = await fetch(`/api/register`, {
             method: "POST",
             headers: {
@@ -38,14 +43,17 @@ const Register = ({ setModel }: { setModel: React.Dispatch<React.SetStateAction<
             }),
         });
         let response = await res.json();
-        console.log(response)
         if (response.message == "Success!") {
-            //   setLoading(false)
-            console.log('success')
+            setLoading(false)
             router.reload();
-        } else {
-            //   setLoading(false)
-            alert("miss match");
+        }
+        else if(response.message == "user is there"){
+            setLoading(false)
+            toast.error("username or email is already registered");
+        }
+        else {
+            setLoading(false)
+            toast.error("something went to wrong");
         }
     };
 

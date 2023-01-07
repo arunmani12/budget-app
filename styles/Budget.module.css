@@ -23,22 +23,24 @@
     position: relative;
 }
 
-.formHelpher{
+.formHelpher {
     width: 100%;
     display: flex;
 }
 
-.helpherLeft{
-  width: 50%;
+.helpherLeft {
+    width: 50%;
 }
 
-.helpherRight{
-  width: 50%;
+.helpherRight {
+    width: 50%;
 }
 
 
 
-.model input,.model textarea, .model select{
+.model input,
+.model textarea,
+.model select {
     display: block;
     background-color: blanchedalmond;
     border: 1px solid #4d54bd;
@@ -50,17 +52,17 @@
     font-size: 16px;
 }
 
-.model label{
+.model label {
     display: block;
     margin-bottom: 0.25rem;
     font-size: 22px;
 }
 
-.budgetLableHolder{
+.budgetLableHolder {
     margin-top: 1rem;
 }
 
-.membersHolder{
+.membersHolder {
     border: 1px solid #4d54bd;
     width: 80%;
     height: 140px;
@@ -70,7 +72,7 @@
     border-radius: 5px;
 }
 
-.budgetLableHolder p{
+.budgetLableHolder p {
     color: #000;
     /* background-color: #7479bf; */
     padding: 0.25rem 1rem;
@@ -79,7 +81,7 @@
     border-radius: 5px;
 }
 
-.budgetHelpher{
+.budgetHelpher {
     display: flex;
     margin-top: 1rem;
     width: 80%;
@@ -87,7 +89,7 @@
     align-items: center;
 }
 
-.nextBtn{
+.nextBtn {
     display: flex;
     align-items: center;
     margin-top: 2rem;
@@ -99,17 +101,17 @@
     cursor: pointer;
 }
 
-.indiviualPrice{
+.indiviualPrice {
     display: flex;
 }
 
-.personDiv{
+.personDiv {
     line-height: 1.8;
     margin-top: 15px;
 }
 
 
-.loader{
+.loader {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -119,4 +121,28 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .model{
+        margin-top: 40%;
+    }
+
+    .formHelpher {
+        flex-direction: column;
+    }
+
+    .helpherLeft {
+        width: 100%;
+    }
+
+    .helpherRight {
+        width: 100%;
+    }
+    .model input,
+    .model textarea,
+    .model select {
+        width: 100%;
+    }
 }
