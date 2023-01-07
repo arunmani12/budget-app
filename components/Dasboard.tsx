@@ -83,6 +83,9 @@ const Dasboard = ({
 
   }
 
+   function delete_cookie(name:string) {
+    document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+  }
 
   const logOutHandler = async() =>{
     const res = await fetch(`/api/logout`)
@@ -90,6 +93,7 @@ const Dasboard = ({
     let response = await res.json();
 
     if(response.message = 'Success'){
+      delete_cookie('token')
       router.reload()
     }
   }
