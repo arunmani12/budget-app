@@ -31,7 +31,7 @@ const Login = ({setModel}:{setModel:React.Dispatch<React.SetStateAction<string>>
           }),
         });
         let response = await res.json();
-        console.log(response)
+
 
         if (response.message == "Success!") {
         //   setLoading(false)

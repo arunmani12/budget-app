@@ -5,9 +5,8 @@ import BudgetModelPrv from './BudgetModelPrv';
 import {MdCancel} from 'react-icons/md'
 
 
-const BudgetModel = ({setOpenBudget}:{setOpenBudget: Dispatch<SetStateAction<boolean>>}) => {
+const BudgetModel = ({setOpenBudget,friends,user}:{setOpenBudget: Dispatch<SetStateAction<boolean>>,friends:any,user:any}) => {
 
-    // const [currentStep, setCurrentStep] = React.useState<number>(1)
 
     return (
         <div className={styles.modelContainer}>
@@ -23,12 +22,7 @@ const BudgetModel = ({setOpenBudget}:{setOpenBudget: Dispatch<SetStateAction<boo
                 onClick={()=>setOpenBudget(prv=>!prv)}
                 />
                 <h1>New Budget</h1>
-                <BudgetForm/>
-                {/* {
-                    currentStep === 1
-                        ? <BudgetForm setCurrentStep={setCurrentStep} />
-                        : <BudgetModelPrv setCurrentStep={setCurrentStep}/>
-                } */}
+                <BudgetForm setOpenBudget={setOpenBudget} friends={friends} user={user}/>
             </div>
         </div>
     )

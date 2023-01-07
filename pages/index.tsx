@@ -4,9 +4,9 @@ import Auth from '../components/Auth/Auth'
 import { GetServerSideProps } from 'next'
 
 
-export default function Home(props:any) {
+export default function Home(props: any) {
 
-  const {authorized} = props
+  const { authorized } = props
 
   return (
     <>
@@ -16,9 +16,9 @@ export default function Home(props:any) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      
-      {authorized ? <Dasboard/> : <Auth/>}
-  
+
+      {authorized ? <Dasboard todayExpense={props.todayExpense} Categories={props.Categories} user={props.user} credit={props.credit} debit={props.debit}/> : <Auth />}
+
     </>
   )
 }
@@ -26,13 +26,29 @@ export default function Home(props:any) {
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const jwt = ctx.req.cookies.token;
 
-  // if (jwt) 
-  //   return { 
-  //     props: {
-  //       authorized: true,
-  //     },
-  //   };
-  
+  if (jwt){
+
+    const res = await fetch(`http://localhost:3000/api/dasboard`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization":jwt
+      },
+    });
+    let response = await res.json();
+
+  return {
+    props: {
+      authorized: true,
+      user:response.user,
+      credit:response.credit,
+      debit:response.debit,
+      Categories : response.Categories,
+      todayExpense:response.todayExpense
+    },
+  };
+   }
+
   return {
     props: {
       authorized: jwt ? true : false,

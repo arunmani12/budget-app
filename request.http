@@ -25,3 +25,25 @@ content-type: application/json
 {
    "name":"sudhikxsha"
 }
+
+###search user
+POST http://localhost:3000/api/addfriend 
+content-type: application/json
+
+{
+   "name":"sudhikxsha"
+}
+
+
+###add budget
+POST http://localhost:3000/api/addbudget 
+content-type: application/json
+
+{
+   "Category":"Food",
+   "Expense":3000,
+   "PaidBy":"63b7d53bb76ccff1a3523ce4",
+   "Description":"asfsdfsd grgerg awrwer",
+   "Participants":[{"id":"63b7d558b76ccff1a3523ce8"},{"id":"63b7d53bb76ccff1a3523ce4"}],
+   "entryBy":"63b7d53bb76ccff1a3523ce4"
+}

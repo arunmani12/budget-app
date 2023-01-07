@@ -7,7 +7,10 @@ const userModel = new Schema({
     email:{type: String, required: true},
     password:{type: String, required: true},
     Friends:[  {
-       id : {type:String,required:true}
+       id : {type:String,required:true},
+       youOwn:{type:Number,required:true},
+       himOwn:{type:Number,required:true},
+       name:{type:String,required:true}
     }],
     transactions:[{
         type:Schema.Types.ObjectId,

@@ -292,7 +292,7 @@
 }
 
 .col{
-  width: 30%;
+  width: 32%;
   background-color: var(--theme-color-blur);
   padding: 1rem;
 }
@@ -368,6 +368,21 @@
   cursor: pointer;
 }
 
+.credAndDept{
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between; */
+  margin-top: 20px;
+}
+
+.credAndDept div{
+  margin-right: 40px;
+}
+
+.credAndDept p{
+  margin-top: 0.5rem;
+  /* font-size: 1.rem; */
+}
 
 .addFriends{
   display: flex;
@@ -394,4 +409,69 @@
 
 .searchFrnd input{
   padding: 0.23rem;
+}
+
+
+.friendContainer{
+  height: 184px;
+  overflow-y:scroll;
+}
+
+.individual{
+  border:1px solid #fff;
+  margin-top:0.5rem;
+  padding:0 0.5rem;
+  border-radius: 4px;
+}
+
+.friendsCandDcard{
+  background-color: var(--theme-color-blur);
+  height: 350px;
+  margin-top: 2rem;
+  padding: 2rem;
+}
+
+.btn{
+  margin-top: 1.5rem;
+}
+
+.btn p{
+  margin: 20% 0;
+  font-size: 2rem;
+}
+
+.left{
+  width: 30%;
+}
+
+.right h3{
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #29b569;
+  margin-bottom: 1.5rem;
+}
+
+.right{
+  width: 70%;
+  /* background-color: #29b569; */
+  padding: 1rem;
+  overflow-y: scroll;
+}
+.right p {
+  margin-bottom: 1rem;
+  font-size: 16px;
+}
+
+.table{
+  display: flex;
+  /* padding: 1rem; */
+  justify-content: space-between;
+  border: 1px solid var(--theme-color-blur);
+  border-bottom: 1px solid #fff;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.table p{
+  margin-bottom: 0.5rem;
 }
