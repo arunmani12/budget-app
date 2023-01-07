@@ -41,7 +41,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   
   if (jwt) {
 
-    const res = await fetch(`http://localhost:3000/api/dasboard`, {
+    const res = await fetch(`https://budget-app-arunmani12.vercel.app/api/dasboard`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
