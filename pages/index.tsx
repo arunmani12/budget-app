@@ -38,17 +38,10 @@ export default function Home(props: any) {
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const jwt = ctx.req.cookies.token;
 
-  const { req } = ctx;
-
-  let url = req.headers.referer as string;
-
-  let arr = url.split('/');
-
-  url = `${arr[0]}//${arr[2]}`;
-
+  
   if (jwt) {
 
-    const res = await fetch(`${url}/api/dasboard`, {
+    const res = await fetch(`http://localhost:3000/api/dasboard`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

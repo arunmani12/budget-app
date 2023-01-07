@@ -62,7 +62,7 @@ const Login = ({setModel,setLoading}:{
                     <input type='password' name='password' value={password} onChange={e=>setPassword(e.target.value)}/>
                 </div>
                 <button type='button' onClick={loginHandler}>Login</button>
-                <p className={styles.info}>Don't have an account? <span onClick={() => setModel('register')}>register</span></p>
+                <p className={styles.info}>Don`&apos;`t have an account? <span onClick={() => setModel('register')}>register</span></p>
             </form>
         </div>
     )

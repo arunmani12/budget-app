@@ -1,7 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react'
 import styles from '../styles/Budget.module.css'
 import BudgetForm from './BudgetForm'
-import BudgetModelPrv from './BudgetModelPrv';
 import {MdCancel} from 'react-icons/md'
 
 
